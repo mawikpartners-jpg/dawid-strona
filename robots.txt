@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: PLACEHOLDER_SITE_URL/sitemap.xml

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opinie Podopiecznych | Dawid Kościelak</title>
+  <meta name="description" content="Recenzje i opinie podopiecznych o treningach z Dawidem Kościelakiem - osobistym trenerem kickboxingu i MMA. Mistrz Polski w MMA. Bydgoszcz.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap&subset=latin,latin-ext" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/public/DKlogo.png">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .under-construction {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .under-construction::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 102, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255, 102, 0, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .construction-content {
+      max-width: 800px;
+      padding: var(--spacing-2xl);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .construction-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto var(--spacing-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(255, 102, 0, 0.1), rgba(255, 102, 0, 0.05));
+      border-radius: 50%;
+      border: 2px solid rgba(255, 102, 0, 0.2);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .construction-icon svg {
+      width: 60px;
+      height: 60px;
+      color: var(--accent-primary);
+    }
+
+    .construction-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-lg);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .construction-subtitle {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--accent-primary);
+      margin-bottom: var(--spacing-xl);
+      font-weight: 600;
+    }
+
+    .construction-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .construction-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .feature-item {
+      padding: var(--spacing-lg);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 102, 0, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .feature-item svg {
+      width: 32px;
+      height: 32px;
+      color: var(--accent-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .feature-item h3 {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+    }
+
+    .feature-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius-lg);
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+    }
+
+    .back-button svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .back-button:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .progress-bar {
+      width: 100%;
+      max-width: 400px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      margin: var(--spacing-xl) auto;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 65%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 10px;
+      animation: progressAnimation 2s ease-in-out infinite;
+    }
+
+    @keyframes progressAnimation {
+      0%, 100% { width: 65%; }
+      50% { width: 75%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Główna nawigacja">
+    <div class="nav-container">
+      <a href="/" class="logo-link">
+        <img src="/public/DKlogo.png" alt="DK Logo" class="logo-image">
+        <span class="logo-pulse"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#o-mnie" class="nav-item">O mnie</a></li>
+        <li><a href="/#uslugi" class="nav-item">Usługi</a></li>
+        <li><a href="/#proces" class="nav-item">Proces</a></li>
+        <li><a href="/#miejsce" class="nav-item">Miejsce</a></li>
+        <li><a href="/#faq" class="nav-item">FAQ</a></li>
+        <li><a href="/#kontakt" class="nav-item">Kontakt</a></li>
+      </ul>
+      <a href="/" class="btn btn-primary">
+        <span class="btn-text">Strona główna</span>
+        <span class="btn-shine"></span>
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <div class="mobile-nav">
+      <ul class="mobile-nav-links">
+        <li><a href="/#o-mnie" class="mobile-nav-item">O mnie</a></li>
+        <li><a href="/#uslugi" class="mobile-nav-item">Usługi</a></li>
+        <li><a href="/#proces" class="mobile-nav-item">Proces</a></li>
+        <li><a href="/#miejsce" class="mobile-nav-item">Miejsce</a></li>
+        <li><a href="/#faq" class="mobile-nav-item">FAQ</a></li>
+        <li><a href="/#kontakt" class="mobile-nav-item">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="under-construction">
+      <div class="construction-content">
+        <div class="construction-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+
+        <h1 class="construction-title">Opinie Podopiecznych</h1>
+        <p class="construction-subtitle">Strona w przygotowaniu</p>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+
+        <p class="construction-description">
+          Pracujemy nad sekcją z opiniami i recenzjami podopiecznych. Wkrótce będziesz mógł przeczytać co mówią o treningach osoby, które już osiągnęły swoje cele sportowe dzięki współpracy ze mną.
+        </p>
+
+        <div class="construction-features">
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <h3>Prawdziwe historie</h3>
+            <p>Opinie od rzeczywistych podopiecznych</p>
+          </div>
+
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <h3>Oceny treningów</h3>
+            <p>Szczegółowe recenzje i doświadczenia</p>
+          </div>
+
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            <h3>Efekty treningów</h3>
+            <p>Postępy i osiągnięte cele</p>
+          </div>
+        </div>
+
+        <a href="/" class="back-button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Wróć na stronę główną
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
