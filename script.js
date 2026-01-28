@@ -76,17 +76,21 @@ const faqQuestions = document.querySelectorAll('.faq-question');
 faqQuestions.forEach(question => {
   question.addEventListener('click', function() {
     const faqItem = this.closest('.faq-item');
-    const isActive = faqItem.classList.contains('active');
+    const answer = faqItem ? faqItem.querySelector('.faq-answer') : null;
+    const isActive = faqItem && faqItem.classList.contains('active');
 
     faqItems.forEach(item => {
       item.classList.remove('active');
       const btn = item.querySelector('.faq-question');
+      const itemAnswer = item.querySelector('.faq-answer');
       if (btn) btn.setAttribute('aria-expanded', 'false');
+      if (itemAnswer) itemAnswer.style.maxHeight = '0px';
     });
 
-    if (!isActive) {
+    if (!isActive && faqItem && answer) {
       faqItem.classList.add('active');
       this.setAttribute('aria-expanded', 'true');
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
     }
   });
 });

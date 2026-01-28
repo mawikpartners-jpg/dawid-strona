@@ -1628,7 +1628,6 @@ body.menu-open {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 500px;
   padding: 0 var(--spacing-xl) var(--spacing-lg);
 }
 
