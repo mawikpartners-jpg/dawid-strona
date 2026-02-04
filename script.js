@@ -73,24 +73,69 @@ document.querySelectorAll('.quality-card').forEach((card, index) => {
 const faqItems = document.querySelectorAll('.faq-item');
 const faqQuestions = document.querySelectorAll('.faq-question');
 
-faqQuestions.forEach(question => {
-  question.addEventListener('click', function() {
-    const faqItem = this.closest('.faq-item');
-    const answer = faqItem ? faqItem.querySelector('.faq-answer') : null;
-    const isActive = faqItem && faqItem.classList.contains('active');
+function updateFaqHeight(element) {
+  if (!element) return;
+  
+  requestAnimationFrame(() => {
+    if (element.parentElement && element.parentElement.classList.contains('active')) {
+      const height = element.scrollHeight;
+      if (height > 0) {
+        element.style.maxHeight = `${height}px`;
+      }
+    }
+  });
+}
 
+faqQuestions.forEach(question => {
+  question.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const faqItem = this.closest('.faq-item');
+    if (!faqItem) return;
+    
+    const answer = faqItem.querySelector('.faq-answer');
+    const isActive = faqItem.classList.contains('active');
+
+    // Close all other items
     faqItems.forEach(item => {
-      item.classList.remove('active');
-      const btn = item.querySelector('.faq-question');
-      const itemAnswer = item.querySelector('.faq-answer');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-      if (itemAnswer) itemAnswer.style.maxHeight = '0px';
+      if (item !== faqItem && item.classList.contains('active')) {
+        item.classList.remove('active');
+        const btn = item.querySelector('.faq-question');
+        const itemAnswer = item.querySelector('.faq-answer');
+        
+        if (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+        }
+        
+        if (itemAnswer) {
+          itemAnswer.style.maxHeight = '0px';
+        }
+      }
     });
 
-    if (!isActive && faqItem && answer) {
+    // Toggle current item
+    if (isActive) {
+      faqItem.classList.remove('active');
+      this.setAttribute('aria-expanded', 'false');
+      if (answer) {
+        answer.style.maxHeight = '0px';
+      }
+    } else {
       faqItem.classList.add('active');
       this.setAttribute('aria-expanded', 'true');
-      answer.style.maxHeight = `${answer.scrollHeight}px`;
+      if (answer) {
+        updateFaqHeight(answer);
+      }
+    }
+  });
+});
+
+// Recalculate heights on window resize
+window.addEventListener('resize', () => {
+  faqItems.forEach(item => {
+    if (item.classList.contains('active')) {
+      const answer = item.querySelector('.faq-answer');
+      updateFaqHeight(answer);
     }
   });
 });
